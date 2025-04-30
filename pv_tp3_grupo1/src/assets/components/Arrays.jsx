@@ -1,3 +1,25 @@
+const productos = [
+  { descripcion: "Teclado", precio: 30000 },
+  { descripcion: "Auriculares", precio: 49000 },
+  { descripcion: "Mouse", precio: 25000 },
+  { descripcion: "Monitor", precio: 120000 },
+  { descripcion: "Parlantes", precio: 35000 }
+];
+function eliminarProductoMasBarato() {
+  if (productos.length == 0) return;
+  // Encontrar el precio más bajo
+  let precioMinimo = Math.min(...productos.map(p => p.precio));
+  // Eliminar el primer producto que tenga ese precio
+  productos = productos.filter(p => p.precio !== precioMinimo);
+  
+  console.log("\nProducto con el precio más bajo eliminado.");
+}
+function mostrarProductos() {
+  productos.forEach(producto => {
+    console.log(`Producto: ${producto.descripcion} - Precio: $${producto.precio}`);
+  });
+}
+
 const ordenar = (productos) => {    
   productos.sort((a,b) => a.precio - b.precio);
   productos.forEach((productos) => {
