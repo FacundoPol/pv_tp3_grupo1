@@ -1,5 +1,5 @@
 //ARREGLO DE PRODUCTOS
-const productos = [
+export const productos = [
   { descripcion: "Teclado", precio: 30000 },
   { descripcion: "Auriculares", precio: 49000 },
   { descripcion: "Mouse", precio: 25000 },
@@ -8,7 +8,9 @@ const productos = [
 ];
 
 //FUNCION ELIMINAR  PRODUCTO MAS BARATO
-function eliminarProductoMasBarato(productos) {
+
+
+export function eliminarProductoMasBarato() {
   if (productos.length == 0) return;
   // Encontrar el precio más bajo
   let precioMinimo = Math.min(...productos.map(p => p.precio));
@@ -20,7 +22,8 @@ function eliminarProductoMasBarato(productos) {
 
 
 //FUNCION MOSTRAR PRODUCTOS
-function mostrarProductos(productos) {
+
+export function mostrarProductos() {
   productos.forEach(producto => {
     console.log(`Producto: ${producto.descripcion} - Precio: $${producto.precio}`);
   });
@@ -28,7 +31,7 @@ function mostrarProductos(productos) {
 
 
 //FUNCION ORDENAR PRODUCTOS
-const ordenar = (productos) => {    
+export const ordenar = (productos) => {    
   productos.sort((a,b) => a.precio - b.precio);
   productos.forEach((productos) => {
   console.log(`Producto [${productos.descripcion}], Precio: $[${productos.precio}]`);
@@ -37,16 +40,24 @@ const ordenar = (productos) => {
 
 
   // 2 - Crear un nuevo array con productos cuyo precio sea mayor a $20 (EZEQUIEL VILLALBA)
-  function filtrarProductosMayoresA20(productos) {
+  export function filtrarProductosMayoresA20(productos) {
     const productosFiltrados = productos.filter(producto => producto.precio > 20);
     return productosFiltrados;
   }
 
 
 //FUNCIONAR AGREGAR PRODUCTOS
-const agregarProducto = (productos, nuevoProducto) => {
+export const agregarProducto = (productos, nuevoProducto) => {
 productos.push(nuevoProducto) //agrega un producto nuevo al final del array
 console.log("producto agregado:",nuevoProducto)
 
 return productos
 }
+
+export const calcularPreciosConIVA = (productos) => {  
+    return productos.map(producto => {     
+         const precioConIVA = producto.precio * 1.21;      
+           return { ...producto, precio: precioConIVA }; 
+    });
+};
+
