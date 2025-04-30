@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import TaskList from './assets/components/TaskList.jsx'
 import TaskInput from './assets/components/TaskInput.jsx';
+import {mostrarProductos, productos,eliminarProductoMasBarato, filtrarProductosMayoresA20, agregarProducto, calcularPreciosConIVA} from './assets/components/Arrays.jsx'
 function App() {
   const [tasks, setTasks] = useState([]); // lista de tareas
 
@@ -21,6 +22,8 @@ function App() {
     setTasks(nuevasTareas);
   };
 
+  mostrarProductos(productos);
+ 
 
   return (
     <div className='container'>
@@ -30,7 +33,8 @@ function App() {
         <TaskList tasks={tasks} onToggleComplete={onToggleComplete} />
       </div>
       <div className='productos'>
-
+       
+      
       </div>
     </div>
   )
