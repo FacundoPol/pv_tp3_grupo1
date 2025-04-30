@@ -8,6 +8,8 @@ export const productos = [
 ];
 
 //FUNCION ELIMINAR  PRODUCTO MAS BARATO
+
+
 export function eliminarProductoMasBarato() {
   if (productos.length == 0) return;
   // Encontrar el precio más bajo
@@ -15,11 +17,12 @@ export function eliminarProductoMasBarato() {
   // Eliminar el primer producto que tenga ese precio
   productos = productos.filter(p => p.precio !== precioMinimo);
 
-  console.log("\nProducto con el precio más bajo eliminado.");
+  console.log("Producto con el precio más bajo eliminado.");
 }
 
 
 //FUNCION MOSTRAR PRODUCTOS
+
 export function mostrarProductos() {
   productos.forEach(producto => {
     console.log(`Producto: ${producto.descripcion} - Precio: $${producto.precio}`);
