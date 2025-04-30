@@ -1,1 +1,7 @@
+  // 2 - Crear un nuevo array con productos cuyo precio sea mayor a $20 (EZEQUIEL VILLALBA)
+  function filtrarProductosMayoresA20(productos) {
+    const productosFiltrados = productos.filter(producto => producto.precio > 20);
+    return productosFiltrados;
+  }
 
+  
