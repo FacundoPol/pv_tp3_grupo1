@@ -1,5 +1,3 @@
-import React from 'react';
-
 function TaskItem({ task, onToggleComplete, }) {
  return (
  <li className={`tarea ${task.completed ? 'completed' : ''}`}>
