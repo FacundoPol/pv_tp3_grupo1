@@ -1,6 +1,7 @@
+import React from 'react';
 import { useState } from 'react'
-import Listar from './assets/components/TaskList.jsx'
-import TaskInput from './assets/components/TaskInput.jsx';
+import TaskList from './TaskList.jsx'
+import TaskInput from './TaskInput.jsx';
 function App2() {
   const [tasks, setTasks] = useState([]); // lista de tareas
 
@@ -25,7 +26,7 @@ function App2() {
     <div className='container'>
       <h1>LISTA DE TAREAS</h1>
       <TaskInput onAdd={agregarTarea}/>
-      <Listar
+      <TaskList
       tasks={tasks}
       onToggleComplete={onToggleComplete} 
       />
