@@ -33,7 +33,7 @@ function App() {
       <div className='tareas'>
         <h1>LISTA DE TAREAS</h1>
         <TaskInput onAdd={agregarTarea}/>
-        <TaskList tasks={tasks} onToggleComplete={onToggleComplete} />
+        <TaskList tasks={tasks} onToggleComplete={onToggleComplete} onDelete={eliminarTarea} />
       </div>
       <div className='productos'>
        

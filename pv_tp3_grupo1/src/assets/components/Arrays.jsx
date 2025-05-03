@@ -15,7 +15,7 @@ export function eliminarProductoMasBarato() {
   // Encontrar el precio más bajo
   let precioMinimo = Math.min(...productos.map(p => p.precio));
   // Eliminar el primer producto que tenga ese precio
-  productos = productos.filter(p => p.precio !== precioMinimo);
+  const nuevaLista = lista.filter(p => p.precio !== precioMinimo); // Correji esto ya que estaba reasignar productos, que fue declarado como const.
 
   console.log("Producto con el precio más bajo eliminado.");
 }
