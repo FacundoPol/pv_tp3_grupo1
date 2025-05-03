@@ -16,8 +16,8 @@ function App() {
   };
 
   const onToggleComplete = (id) => {
-    const nuevasTareas = tasks.map((task, i) =>
-      i === id ? { ...task, completed: !task.completed } : task
+    const nuevasTareas = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
     setTasks(nuevasTareas);
   };
