@@ -22,6 +22,9 @@ function App() {
     setTasks(nuevasTareas);
   };
 
+  const eliminarTarea = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
   mostrarProductos(productos);
  
 
