@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import TaskList from './assets/components/TaskList.jsx'
 import TaskInput from './assets/components/TaskInput.jsx';
+import './App.css'
 import {mostrarProductos, productos,eliminarProductoMasBarato, filtrarProductosMayoresA20, agregarProducto, calcularPreciosConIVA} from './assets/components/Arrays.jsx'
 function App() {
   const [tasks, setTasks] = useState([]); // lista de tareas
