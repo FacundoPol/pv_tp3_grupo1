@@ -16,12 +16,15 @@ function App() {
   };
 
   const onToggleComplete = (id) => {
-    const nuevasTareas = tasks.map((task, i) =>
-      i === id ? { ...task, completed: !task.completed } : task
+    const nuevasTareas = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
     setTasks(nuevasTareas);
   };
 
+  const eliminarTarea = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
   mostrarProductos(productos);
  
 
@@ -30,7 +33,7 @@ function App() {
       <div className='tareas'>
         <h1>LISTA DE TAREAS</h1>
         <TaskInput onAdd={agregarTarea}/>
-        <TaskList tasks={tasks} onToggleComplete={onToggleComplete} />
+        <TaskList tasks={tasks} onToggleComplete={onToggleComplete} onDelete={eliminarTarea} />
       </div>
       <div className='productos'>
        
