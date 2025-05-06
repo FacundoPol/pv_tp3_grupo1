@@ -1,0 +1,37 @@
+h2{
+    background-color: rgb(191, 0, 255);
+    font-family: Arial, sans-serif; 
+}
+    
+    
+    #lista-productos li {
+        background-color: #f8f9fa; /* Color de fondo claro */
+        margin: 5px 0; /* Separación entre elementos */
+        padding: 10px; /* Espaciado interno */
+        border-radius: 4px; /* Bordes redondeados */
+    }
+    
+  
+    .botones-formu button{
+        background-color: #bb07cb; 
+        margin: 5px;
+    }
+    
+    .botones-formu {
+       
+        
+        color: rgb(140, 36, 201) !important;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+       
+    }
+
+    #lista-productos li{
+        font-family: Arial, sans-serif;
+        list-style: none;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+     
