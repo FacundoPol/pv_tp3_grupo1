@@ -1,63 +1,125 @@
-//ARREGLO DE PRODUCTOS
-export const productos = [
-  { descripcion: "Teclado", precio: 30000 },
-  { descripcion: "Auriculares", precio: 49000 },
-  { descripcion: "Mouse", precio: 25000 },
-  { descripcion: "Monitor", precio: 120000 },
-  { descripcion: "Parlantes", precio: 35000 }
-];
 
-//FUNCION ELIMINAR  PRODUCTO MAS BARATO
+import '../css/Productos.css'
+const productsService = (()=>{
+  let products = [];
+  const getAll = () => products;
+  const add = (name, price) => products.push({descripcion: name, precio: price});
+  const remove = (name) => {
+      products = products.filter(s => s.descripcion !== name);
+  };
+  const search = (term) => products.filter(s => 
+          s.descripcion.toLowerCase().includes(term.toLowerCase()));
 
+  return { getAll, add, remove, search };
+})();
 
-export function eliminarProductoMasBarato() {
-  if (productos.length == 0) return;
-  // Encontrar el precio más bajo
-  let precioMinimo = Math.min(...productos.map(p => p.precio));
-  // Eliminar el primer producto que tenga ese precio
-  const nuevaLista = lista.filter(p => p.precio !== precioMinimo); // Correji esto ya que estaba reasignar productos, que fue declarado como const.
+function Formu() {
+  
+  function mostrarProductosEnLista(){
+    const lista = document.getElementById('lista-productos');
+    lista.innerHTML = '';//para limpiar la lista
+    let productos= productsService.getAll();
+    productos.forEach((producto)=> {
+    const item = document.createElement('li');
+    item.textContent= `producto: ${producto.descripcion} - Precio: $${producto.precio.toFixed(2)}`;
+    lista.appendChild(item);
+    });
+    }
+  function manejarSubmit(evento){
 
-  console.log("Producto con el precio más bajo eliminado.");
+  evento.preventDefault();
+
+  const nombre =document.getElementById('nombre').value;
+  const precio =parseFloat(document.getElementById('precio').value);
+
+  const producto= {descripcion: nombre, precio: precio};
+  productsService.add(nombre,precio)
+  
+
+  document.getElementById('nombre').value='';
+  document.getElementById('precio').value='';
+  mostrarProductosEnLista();
+  };
+
+  
+
+  function aplicarIVA(){
+      const lista = document.getElementById('lista-productos');
+      lista.innerHTML = '';//para limpiar la lista
+      let productos= productsService.getAll();
+      productos.forEach((producto)=> {
+      const item = document.createElement('li');
+      item.textContent= `producto: ${producto.descripcion} - Precio: $${producto.precio.toFixed(2)*1.21}`;
+      lista.appendChild(item);
+      });
+      }
+
+  function eliminarProductoMasBarato() {
+    let productos = productsService.getAll();
+    if (productos.length === 0) return;
+
+    // Encontrar el producto con el precio más bajo
+    const productoMasBarato = productos.reduce((prev, curr) => (prev.precio < curr.precio) ? prev : curr);
+    
+    productsService.remove(productoMasBarato.descripcion);
+    console.log("\nProducto con el precio más bajo eliminado.");
+    mostrarProductosEnLista();
 }
 
 
-//FUNCION MOSTRAR PRODUCTOS
+  function filtrarProductosMayoresA20000() {
+    let productos = productsService.getAll();
+    const productosFiltrados = productos.filter(producto => producto.precio > 20000);
+    
+    // Limpiar la lista y mostrar los productos filtrados
+    const lista = document.getElementById('lista-productos');
+    lista.innerHTML = '';
+    productosFiltrados.forEach(producto => {
+        const item = document.createElement('li');
+        item.textContent = `producto: ${producto.descripcion} - Precio: $${producto.precio.toFixed(2)}`;
+        lista.appendChild(item);
+    });
+}
 
-export function mostrarProductos() {
+  //FUNCION ORDENAR PRODUCTOS
+function ordenar() {
+  let productos = productsService.getAll();
+  productos.sort((a, b) => a.precio - b.precio);
+
+  // Limpiar la lista y mostrar los productos ordenados
+  const lista = document.getElementById('lista-productos');
+  lista.innerHTML = '';
   productos.forEach(producto => {
-    console.log(`Producto: ${producto.descripcion} - Precio: $${producto.precio}`);
+      const item = document.createElement('li');
+      item.textContent = `producto: ${producto.descripcion} - Precio: $${producto.precio.toFixed(2)}`;
+      lista.appendChild(item);
   });
 }
 
 
-//FUNCION ORDENAR PRODUCTOS
-export const ordenar = (productos) => {    
-  productos.sort((a,b) => a.precio - b.precio);
-  productos.forEach((productos) => {
-  console.log(`Producto [${productos.descripcion}], Precio: $[${productos.precio}]`);
- });
-};
 
+  return (
+   <>
+   <h2>Lista Productos</h2>
+      <form onSubmit={manejarSubmit}>
+        <input type="text" id='nombre' name="nombre"  placeholder="Nombre del producto" required />
+        <input type="number" id='precio' name="precio"  placeholder="Precio" required />
+        <button id= "boton1" type= "submit"> Agregar Producto </button>
+      </form>
 
-  // 2 - Crear un nuevo array con productos cuyo precio sea mayor a $20 (EZEQUIEL VILLALBA)
-  export function filtrarProductosMayoresA20(productos) {
-    const productosFiltrados = productos.filter(producto => producto.precio > 20);
-    return productosFiltrados;
-  }
+        <h2>Productos Agregados: </h2>
+        <ul id="lista-productos">
+          
+        </ul>
 
-
-//FUNCIONAR AGREGAR PRODUCTOS
-export const agregarProducto = (productos, nuevoProducto) => {
-productos.push(nuevoProducto) //agrega un producto nuevo al final del array
-console.log("producto agregado:",nuevoProducto)
-
-return productos
+        <div className='botones-formu' >
+       
+        <button onClick={aplicarIVA}>Aplicar IVA (21%)</button>
+        <button onClick={eliminarProductoMasBarato}>Eliminar prodcuto mas barato</button>
+        <button onClick={filtrarProductosMayoresA20000}>Filtrar</button>
+        <button onClick={ordenar}>Ordenar por precio</button>
+        </div>
+    </>
+  );
 }
-
-export const calcularPreciosConIVA = (productos) => {  
-    return productos.map(producto => {     
-         const precioConIVA = producto.precio * 1.21;      
-           return { ...producto, precio: precioConIVA }; 
-    });
-};
-
+export default Formu;

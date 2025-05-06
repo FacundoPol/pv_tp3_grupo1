@@ -3,7 +3,7 @@ import { useState } from 'react'
 import TaskList from './assets/components/TaskList.jsx'
 import TaskInput from './assets/components/TaskInput.jsx';
 import './App.css'
-import {mostrarProductos, productos,eliminarProductoMasBarato, filtrarProductosMayoresA20, agregarProducto, calcularPreciosConIVA} from './assets/components/Arrays.jsx'
+import Formu from './assets/components/Arrays.jsx';
 function App() {
   const [tasks, setTasks] = useState([]); // lista de tareas
 
@@ -26,7 +26,7 @@ function App() {
   const eliminarTarea = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
-  mostrarProductos(productos);
+  
  
 
   return (
@@ -38,7 +38,7 @@ function App() {
       </div>
       <div className='productos'>
        
-      
+      <Formu /> 
       </div>
     </div>
   )
